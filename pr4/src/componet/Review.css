@@ -1,0 +1,115 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  
+}
+
+
+body{
+     background: url("https://i.pinimg.com/1200x/98/41/58/984158a2ecc7558b64ff4b63625d9ba6.jpg") no-repeat center center/cover;
+}
+
+.custom-form {
+ 
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 40px 35px;
+  width: 100%;
+  max-width: 400px;
+  color: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.custom-form label {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 15px;
+}
+
+.input-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  flex: 1;
+  margin-left: 8px;
+}
+
+
+
+.custom-form button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+
+}
+
+.custom-form button:hover {
+  background: blueviolet;
+  transform: scale(1.03);
+}
+
+
+
+
+
+.review-card-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px;
+  justify-content: center;
+  /* align-items: stretch; */
+  margin-top: 30px;
+  padding: 0 20px;
+}
+
+.testimonial-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 500px; 
+  flex: 1 1 45%; 
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  padding: 20px 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: white;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial-text,
+.testimonial-name {
+  color: #fff;
+}
+
+.testimonial-image img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #eee;
+}
+
+
