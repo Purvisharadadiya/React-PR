@@ -1,0 +1,25 @@
+/* Navbar background & sticky */
+.custom-navbar {
+  background-color: #8177ea;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Button style */
+.add-movie-btn {
+  background-color: #8177ea; /* Same as navbar */
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect */
+.add-movie-btn:hover {
+  background-color: #6d62d8; /* Slightly darker shade */
+  transform: scale(1.05); /* Small pop effect */
+}
