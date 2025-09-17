@@ -2,9 +2,9 @@ import { useState } from "react";
 import "./addmovie.css";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { getstoragedata, setstroagedata } from "../../services/storageData";
-
+import { useNavigate } from "react-router";
 function AddMovie() {
-
+ const navigate = useNavigate();
   const initialState = {
     id: "",
     poster: "",
@@ -27,6 +27,7 @@ function AddMovie() {
     let olddata=getstoragedata();
     olddata.push(inputFrom);
     setstroagedata(olddata);
+    navigate("/")
   }
   return (
     <div className="form-container">
