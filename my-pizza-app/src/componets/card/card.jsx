@@ -85,6 +85,11 @@ function CRAD() {
         ))}
       </Row>
 </Container>
+        <div className="pagination">
+        <span className="page active">1</span>
+        <span className="page">2</span>
+        <span className="page">&gt;</span>
+      </div>
     </>
   );
 }

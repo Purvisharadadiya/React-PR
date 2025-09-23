@@ -1,151 +1,138 @@
 import { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/esm/Container';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import { getstoragedata, setstroagedata } from '../../services/storageData';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useParams, useNavigate } from "react-router";
+import { getstoragedata, setstroagedata } from '../../services/storageData';
 
-const Editproduct = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
+const EditProduct = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-    const initalstate = {
-        id: "",
-        title: "",
-        desc: "",
-        price: "",
-        Quantity: "",
-        Category: "",
-        Image: ""
-    };
+  const initialState = {
+    id: "",
+    title: "",
+    desc: "",
+    price: "",
+    Quantity: "",
+    Category: "",
+    Image: ""
+  };
 
-    const [inputFrom, setInputFrom] = useState(initalstate);
-    
+  const [inputForm, setInputForm] = useState(initialState);
 
+  useEffect(() => {
+    const data = getstoragedata() || [];
+    const record = data.find(v => String(v.id) === String(id));
+    if (record) {
+      setInputForm(record);
+    } else {
+      setInputForm(initialState);
+    }
+  }, [id]);
 
-    useEffect(() => {
-        let data = getstoragedata();
-        let record = data.find(v => v.id == id);
-        if (record) {
-            setInputFrom(record);
-        }
-    }, [id]);
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setInputForm(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
-    const handleInput = (e) => {
-        const { name, value } = e.target;
-        setInputFrom({
-            ...inputFrom,
-            [name]: value
-        });
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = getstoragedata() || [];
+    const updated = data.map(v => (String(v.id) === String(inputForm.id) ? inputForm : v));
+    setstroagedata(updated);
+    navigate("/");
+  };
 
-   
+  return (
+    <Container>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm="2">Title</Form.Label>
+          <Col sm="6">
+            <Form.Control
+              type="text"
+              name="title"
+              placeholder="Enter Title"
+              value={inputForm.title || ""}
+              onChange={handleInput}
+            />
+          </Col>
+        </Form.Group>
 
-    const hadleSubmit = (e) => {
-        e.preventDefault();
-        let data = getstoragedata();
-        let updated = data.map((v) => {
-            if (v.id == inputFrom.id) {
-                return inputFrom
-            } else {
-                return v;
-            }
-        })
-        setstroagedata(updated);
-        setInputFrom(initalstate)
-        navigate("/");
-    };
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm="2">Description</Form.Label>
+          <Col sm="6">
+            <Form.Control
+              type="text"
+              name="desc"
+              placeholder="Enter Description"
+              value={inputForm.desc || ""}
+              onChange={handleInput}
+            />
+          </Col>
+        </Form.Group>
 
-    return (
-        <Container>
-            <Form onSubmit={hadleSubmit}>
-                <Form.Group as={Row} className="mb-3">
-                    <Form.Label column sm="2">Title</Form.Label>
-                    <Col sm="6">
-                        <Form.Control
-                            type="text"
-                            name="title"
-                            placeholder="Enter Title"
-                            onChange={handleInput}
-                            value={inputFrom.title}
-                        />
-                    </Col>
-                </Form.Group>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm="2">Price</Form.Label>
+          <Col sm="6">
+            <Form.Control
+              type="number"
+              name="price"
+              placeholder="Enter Price"
+              value={inputForm.price || ""}
+              onChange={handleInput}
+            />
+          </Col>
+        </Form.Group>
 
-                <Form.Group as={Row} className="mb-3">
-                    <Form.Label column sm="2">Description</Form.Label>
-                    <Col sm="6">
-                        <Form.Control
-                            type="text"
-                            name="desc"
-                            placeholder="Enter Description"
-                            onChange={handleInput}
-                            value={inputFrom.desc}
-                        />
-                    </Col>
-                </Form.Group>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm="2">Quantity</Form.Label>
+          <Col sm="6">
+            <Form.Control
+              type="number"
+              name="Quantity"
+              placeholder="Enter Quantity"
+              value={inputForm.Quantity || ""}
+              onChange={handleInput}
+            />
+          </Col>
+        </Form.Group>
 
-                <Form.Group as={Row} className="mb-3">
-                    <Form.Label column sm="2">Price</Form.Label>
-                    <Col sm="6">
-                        <Form.Control
-                            type="number"
-                            name="price"
-                            placeholder="Enter Price"
-                            onChange={handleInput}
-                            value={inputFrom.price}
-                        />
-                    </Col>
-                </Form.Group>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm="2">Category</Form.Label>
+          <Col sm="6">
+            <Form.Select
+              name="Category"
+              value={inputForm.Category || ""}
+              onChange={handleInput}
+            >
+              <option value="">Select Category</option>
+              <option value="mobile">Mobile</option>
+              <option value="Furniture">Furniture</option>
+              <option value="Fashion">Fashion</option>
+            </Form.Select>
+          </Col>
+        </Form.Group>
 
-                <Form.Group as={Row} className="mb-3">
-                    <Form.Label column sm="2">Quantity</Form.Label>
-                    <Col sm="6">
-                        <Form.Control
-                            type="number"
-                            name="Quantity"
-                            placeholder="Enter Quantity"
-                            onChange={handleInput}
-                            value={inputFrom.Quantity}
-                        />
-                    </Col>
-                </Form.Group>
+        <Form.Group as={Row} className="mb-3">
+          <Form.Label column sm="2">Image</Form.Label>
+          <Col sm="6">
+            <Form.Control
+              type="text"
+              name="Image"
+              placeholder="Enter Image URL"
+              value={inputForm.Image || ""}
+              onChange={handleInput}
+            />
+          </Col>
+        </Form.Group>
 
-                <Form.Group as={Row} className="mb-3">
-                    <Form.Label column sm="2">Category</Form.Label>
-                    <Col sm="6">
-                        <Form.Select
-                            onChange={handleInput}
-                            name="Category"
-                            value={inputFrom.Category}
-                        >
-                            <option>select Category</option>
-                            <option value="mobile" selected={inputFrom.Category == "mobile"}>mobile</option>
-                            <option value="Furniture" selected={inputFrom.Category == "Furniture"}>Furniture</option>
-                            <option value="Fashion" selected={inputFrom.Category == "Fashion"}>Fashion</option>
-                        </Form.Select>
-                    </Col>
-                </Form.Group>
-
-                <Form.Group as={Row} className="mb-3">
-                    <Form.Label column sm="2">Image</Form.Label>
-                    <Col sm="6">
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter Image URL"
-                            onChange={handleInput}
-                            name="Image"
-                            value={inputFrom.Image}
-                        />
-                    </Col>
-                </Form.Group>
-
-                <Button type="submit">Update Product</Button>
-            </Form>
-        </Container>
-    );
+        <Button type="submit">Update Product</Button>
+      </Form>
+    </Container>
+  );
 };
 
-export default Editproduct;
+export default EditProduct;
