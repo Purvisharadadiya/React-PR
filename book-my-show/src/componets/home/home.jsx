@@ -3,6 +3,7 @@ import { getstoragedata, setstroagedata } from "../../services/storageData";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import "./home.css";
 import { useNavigate } from 'react-router';
+
 const Home = () => {
   const [movie, setMovie] = useState([]);
   const [search, setSearch] = useState("");
@@ -10,49 +11,53 @@ const Home = () => {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedLanguages, setSelectedLanguages] = useState([]);
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    let data = getstoragedata();
-    setMovie(data || []);
+    const data = getstoragedata() || [];
+    setMovie(data);
   }, []);
 
   const handleDelete = (id) => {
-    let data = getstoragedata();
-    let updated = data.filter((v) => v.id !== id);
+    const data = getstoragedata() || [];
+    const updated = data.filter((v) => v.id !== id);
     setstroagedata(updated);
     setMovie(updated);
   };
+
   const handleEdit = (id) => {
-    navigate(`/Edit/${id}`)
-  }
+    navigate(`/Edit/${id}`);
+  };
 
   const sortingData = (data, value) => {
+    if (!value) return data;
     let [field, type] = value.split(",");
-    return data.sort((a, b) =>
+    return [...data].sort((a, b) =>
       type === "acs"
         ? a[field].localeCompare(b[field], undefined, { sensitivity: "base" })
         : b[field].localeCompare(a[field], undefined, { sensitivity: "base" })
     );
   };
 
-
   const applyFilters = () => {
     let data = getstoragedata() || [];
 
+    // Search filter
     let filtered = data.filter((v) =>
       v.name.toLowerCase().includes(search.toLowerCase())
     );
 
+    // Genre filter
     if (selectedGenres.length > 0) {
       filtered = filtered.filter((v) => selectedGenres.includes(v.genre));
     }
 
+    // Language filter
     if (selectedLanguages.length > 0) {
-      filtered = filtered.filter((v) =>
-        selectedLanguages.includes(v.language)
-      );
+      filtered = filtered.filter((v) => selectedLanguages.includes(v.language));
     }
 
+    // Sort
     if (sortData) {
       filtered = sortingData(filtered, sortData);
     }
@@ -60,21 +65,21 @@ const navigate = useNavigate();
     setMovie(filtered);
   };
 
+  useEffect(() => {
+    applyFilters();
+  }, [search, selectedGenres, selectedLanguages, sortData]);
+
   const handleSearchChange = (e) => setSearch(e.target.value);
 
   const handleGenreChange = (genre) => {
     setSelectedGenres((prev) =>
-      prev.includes(genre)
-        ? prev.filter((g) => g !== genre)
-        : [...prev, genre]
+      prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]
     );
   };
 
   const handleLanguageChange = (lang) => {
     setSelectedLanguages((prev) =>
-      prev.includes(lang)
-        ? prev.filter((l) => l !== lang)
-        : [...prev, lang]
+      prev.includes(lang) ? prev.filter((l) => l !== lang) : [...prev, lang]
     );
   };
 
@@ -85,27 +90,25 @@ const navigate = useNavigate();
     setSelectedGenres([]);
     setSelectedLanguages([]);
     setSortData("");
-    let data = getstoragedata();
-    setMovie(data);
+    setMovie(getstoragedata() || []);
   };
-
-
-  useEffect(() => {
-    applyFilters();
-  }, [search, selectedGenres, selectedLanguages, sortData]);
 
   return (
     <Container fluid>
       <div className="d-flex">
-
+        {/* Filters */}
         <div className="p-3 border rounded shadow-sm" style={{ width: "250px" }}>
           <h4>Filters</h4>
 
+          <input
+            type="text"
+            placeholder="Search Movies..."
+            value={search}
+            onChange={handleSearchChange}
+            className="form-control mb-3"
+          />
 
-          <input type="text" placeholder="Search Movies..." value={search} onChange={handleSearchChange} className="form-control mb-3" />
-
-
-          <h6> Genres</h6>
+          <h6>Genres</h6>
           {["Action", "Comedy", "Drama", "Thriller"].map((g) => (
             <div key={g}>
               <input
@@ -117,8 +120,7 @@ const navigate = useNavigate();
             </div>
           ))}
 
-
-          <h6 className="mt-3"> Language</h6>
+          <h6 className="mt-3">Language</h6>
           {["Hindi", "English", "Tamil", "Telugu", "Gujarati"].map((lang) => (
             <div key={lang}>
               <input
@@ -129,7 +131,6 @@ const navigate = useNavigate();
               {lang}
             </div>
           ))}
-
 
           <h6 className="mt-3">Sort By</h6>
           <select className="form-select" value={sortData} onChange={handleSort}>
@@ -156,11 +157,15 @@ const navigate = useNavigate();
               movie.map((v) => (
                 <Col key={v.id} xs={12} sm={6} md={4} lg={3}>
                   <Card className="shadow-sm h-100">
-                    <Card.Img variant="top" src={v.poster} alt={v.name} style={{
-                      height: "300px",
-                      objectFit: "cover",
-                      borderRadius: "10px",
-                    }}
+                    <Card.Img
+                      variant="top"
+                      src={v.poster}
+                      alt={v.name}
+                      style={{
+                        height: "300px",
+                        objectFit: "cover",
+                        borderRadius: "10px",
+                      }}
                     />
                     <Card.Body>
                       <Card.Title>{v.name}</Card.Title>
@@ -169,9 +174,15 @@ const navigate = useNavigate();
                       </Card.Text>
                       <p className="rating">⭐ {v.rating}</p>
                       <div className="d-flex justify-content-between">
-                        <Button  size="sm" onClick={() => handleEdit(v.id)}> Edit
+                        <Button size="sm" onClick={() => handleEdit(v.id)}>
+                          Edit
                         </Button>
-                        <Button variant="danger" size="sm" onClick={() => handleDelete(v.id)}> Delete
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          onClick={() => handleDelete(v.id)}
+                        >
+                          Delete
                         </Button>
                       </div>
                     </Card.Body>

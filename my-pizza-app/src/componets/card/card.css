@@ -124,3 +124,26 @@
   background: #f4a300;
 
 }
+
+
+.sort-dropdown {
+  border: 1px solid #ddd !important;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-weight: 500;
+  background-color: #fff !important;
+}
+
+.sort-menu {
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sort-menu .dropdown-item:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+
+
+
