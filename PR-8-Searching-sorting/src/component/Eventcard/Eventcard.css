@@ -1,0 +1,9 @@
+.slick-slider {
+  overflow: hidden;
+}
+.slick-track {
+  display: flex !important;
+}
+.slider-moive{
+    padding: 50px 0px;
+}

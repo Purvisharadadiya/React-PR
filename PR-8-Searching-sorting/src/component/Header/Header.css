@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header-section {
+    background-color: rgba(255, 255, 255, 0.846);
+}
+
+.logo-image {
+    width: 200px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-add-moive {
+    padding: 10px 20px;
+    border: 0px;
+    border-radius: 10px;
+    color: white;
+}
+

@@ -17,7 +17,7 @@ function AddMovie() {
   };
 
   const [inputFrom, setInputFrom] = useState(initialState);
-  const [errors, setErrors] = useState({}); // per-field errors
+  const [errors, setErrors] = useState({}); 
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -36,7 +36,7 @@ function AddMovie() {
       formErrors.rating = "Rating must be between 1 and 10!";
 
     setErrors(formErrors);
-    return Object.keys(formErrors).length === 0; // true if valid
+    return Object.keys(formErrors).length === 0; 
   };
 
   const handleSubmit = (e) => {

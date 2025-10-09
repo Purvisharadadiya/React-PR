@@ -1,0 +1,49 @@
+
+.add-moive-form {
+  background: #f2f2f2; 
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+
+.add-moive-form label {
+  font-weight: 600;
+  color: #333333;
+  display: inline-block;
+}
+
+/* Inputs and Selects */
+.add-moive-form input,
+.add-moive-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.add-moive-form input:focus,
+.add-moive-form select:focus {
+  border-color: #d32f2f;
+  box-shadow: 0 0 6px rgba(211, 47, 47, 0.4);
+}
+
+.add-moive-form button {
+  background-color: #d32f2f;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-moive-form button:hover {
+  background-color: #b71c1c;
+  transform: scale(1.03);
+}

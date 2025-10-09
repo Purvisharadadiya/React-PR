@@ -1,0 +1,19 @@
+.footer {
+  background-color: #454545;
+  padding: 20px 0;
+  text-align: center;
+  color: #fff;
+  font-family: cursive;
+}
+
+.footer-logo h2 {
+  font-size: 25px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.footer-logo span {
+  color: red; 
+}
+
+

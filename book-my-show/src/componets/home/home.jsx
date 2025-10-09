@@ -42,22 +42,22 @@ const Home = () => {
   const applyFilters = () => {
     let data = getstoragedata() || [];
 
-    // Search filter
+    
     let filtered = data.filter((v) =>
       v.name.toLowerCase().includes(search.toLowerCase())
     );
 
-    // Genre filter
+    
     if (selectedGenres.length > 0) {
       filtered = filtered.filter((v) => selectedGenres.includes(v.genre));
     }
 
-    // Language filter
+    
     if (selectedLanguages.length > 0) {
       filtered = filtered.filter((v) => selectedLanguages.includes(v.language));
     }
 
-    // Sort
+    
     if (sortData) {
       filtered = sortingData(filtered, sortData);
     }
@@ -96,7 +96,7 @@ const Home = () => {
   return (
     <Container fluid>
       <div className="d-flex">
-        {/* Filters */}
+      
         <div className="p-3 border rounded shadow-sm" style={{ width: "250px" }}>
           <h4>Filters</h4>
 
@@ -149,7 +149,7 @@ const Home = () => {
           </Button>
         </div>
 
-        {/* Movie Cards */}
+        
         <main className="flex-grow-1 ms-4">
           <h2 className="mb-3">All Movies</h2>
           <Row className="g-4">
