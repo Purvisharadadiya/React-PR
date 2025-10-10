@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom'; 
 import Header from './Header/Header';
-import AddProduct from './AddProduct/AddProduct';
+import AddProduct from './AddProduct/addproduct';
 import Home from './Home/home';
 import MenCard from './show_men/Men';
 import Edit from './Edit/Edit';

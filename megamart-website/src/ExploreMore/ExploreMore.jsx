@@ -1,4 +1,5 @@
 import React from "react";
+import "./ExploreMore.css";
 
 const exploreItems = [
   { id: 1, img: "./src/assets/img/1.png", title: "Megapass" },
@@ -11,25 +12,18 @@ const exploreItems = [
 
 const ExploreMore = () => {
   return (
-    <div className="w-full py-10 text-center">
-      <h2 className="text-3xl font-bold mb-8">EXPLORE MORE</h2>
+    <div className="explore-container">
+      <h2 className="explore-title">EXPLORE MORE</h2>
 
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="explore-list">
         {exploreItems.map((item) => (
-          <div
-            key={item.id}
-            className="flex flex-col items-center w-40 transition-transform hover:scale-105"
-          >
-            <div className="bg-[#f6f3ef] rounded-xl shadow-md p-3">
-              <img
-                src={item.img}
-                alt={item.title}
-                className="rounded-lg object-cover w-36 h-36"
-              />
+          <div key={item.id} className="explore-card">
+            <div className="explore-img-box">
+              <img src={item.img} alt={item.title} className="explore-img" />
             </div>
             <p
-              className={`mt-3 text-lg font-semibold ${
-                item.title === "Megapass" ? "text-red-500" : "text-gray-800"
+              className={`explore-name ${
+                item.title === "Megapass" ? "megapass" : ""
               }`}
             >
               {item.title}
