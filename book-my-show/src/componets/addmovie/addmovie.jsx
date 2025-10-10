@@ -51,7 +51,7 @@ function AddMovie() {
     setInputFrom(initialState);
     navigate("/");
   };
-
+                   
   return (
     <div className="form-container">
       <div className="form-left">

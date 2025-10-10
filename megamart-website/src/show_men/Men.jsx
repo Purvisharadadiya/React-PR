@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteproduct } from "../srvices/action/action";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import Footer from "../footer/footer";
 
 const MenCard = () => {
   const dispatch = useDispatch();
@@ -59,11 +60,11 @@ const MenCard = () => {
       if (filters.sort === "highToLow") return b.price - a.price;
       return 0;
     });
-
+    
   const categoryOptions = ["Blazers", "Cargos", "Chinos", "Jackets", "Joggers"];
   const brandOptions = ["AD BY Arvind", "Arrow", "Calvin Klein", "Tommy Hilfiger", "Levi's"];
   const sizeOptions = [26,28,30,32,34,36];
-
+ <Footer></Footer>
   return (
     <Container fluid className="mt-4">
       <Row>
@@ -239,6 +240,7 @@ const MenCard = () => {
         </Col>
       </Row>
     </Container>
+   
   );
 };
 

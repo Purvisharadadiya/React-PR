@@ -20,15 +20,15 @@ const AddProduct = () => {
   };
 
   const [inputForm, setInputForm] = useState(initialState);
-  const [errors, setErrors] = useState({}); // ✅ Validation errors
+  const [errors, setErrors] = useState({}); 
 
-  // 🔹 Handle input changes
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputForm({ ...inputForm, [name]: value });
   };
 
-  // 🔹 Validate form before submit
+  
   const validateForm = () => {
     const formErrors = {};
 

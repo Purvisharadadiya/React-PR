@@ -91,48 +91,6 @@ const Footer = () => {
     </footer>
  );
 };
- {/* <Navbar expand="lg" className='main'>
-                <Container fluid>
-                    <Navbar.Brand as={Link} to="/">
-                        <img src={logo} alt="Logo" height={50} />
-                    </Navbar.Brand>
-
-                    <Form className="d-flex search-form mx-auto">
-                        <Form.Control 
-                            type="search" 
-                            placeholder="Search" 
-                            aria-label="Search" 
-                            className="search-input" 
-                        />
-                        <CiSearch className="search-icon" />
-                    </Form>
-
-                    <Nav className="d-flex align-items-center">
-                        <Nav.Link href="#account"><VscAccount /></Nav.Link>
-                        <Nav.Link href="#wishlist"><CiHeart /></Nav.Link>
-                        <Nav.Link href="#cart"><CiShoppingCart /></Nav.Link>
-                        <Link to="/AddProduct" className="btn btn-warning ms-2">
-                            Add Product
-                        </Link>
-                    </Nav>
-                </Container>
-            </Navbar>
-
-            <Navbar bg="light" className="second-header">
-                <Container fluid className="justify-content-center">
-                    <Nav>
-                        <Nav.Link href="#">Men</Nav.Link>
-                        <Nav.Link href="#">Women</Nav.Link>
-                        <Nav.Link href="#">Kids</Nav.Link>
-                        <Nav.Link href="#">Footwear</Nav.Link>
-                        <Nav.Link href="#">Innerwear</Nav.Link>
-                        <Nav.Link href="#">Accessories</Nav.Link>
-                        <Nav.Link href="#">Brands</Nav.Link>
-                    </Nav>
-                </Container>
-            </Navbar>
-             */}
-
 
  
 
