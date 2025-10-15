@@ -1,20 +1,17 @@
 import { Card, Row, Col, Container, Button, Form, Accordion } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import {  deleteproductAsync, getAllproductsAsync } from "../srvices/action/action";
+import { deleteproduct } from "../srvices/action/action";
 import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
+import Footer from "../footer/footer";
 
 const MenCard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { products, isLoading } = useSelector(
+  const { products = [], isLoading } = useSelector(
     (state) => state.productReducer || state
   );
-
-  console.log(products);
-  
 
   const [filters, setFilters] = useState({
     categories: [],
@@ -41,7 +38,7 @@ const MenCard = () => {
   const handlePriceChange = (e) =>
     setFilters({ ...filters, [e.target.name]: e.target.value });
 
-  const handleDelete = (id) => dispatch(deleteproductAsync(id));
+  const handleDelete = (id) => dispatch(deleteproduct(id));
   const handleEdit = (id) => navigate(`/edit-product/${id}`);
 
   const filteredProducts = products
@@ -67,9 +64,7 @@ const MenCard = () => {
   const categoryOptions = ["Blazers", "Cargos", "Chinos", "Jackets", "Joggers"];
   const brandOptions = ["AD BY Arvind", "Arrow", "Calvin Klein", "Tommy Hilfiger", "Levi's"];
   const sizeOptions = [26,28,30,32,34,36];
-    useEffect(()=>{
-      dispatch(getAllproductsAsync())
-    }, []);
+ <Footer></Footer>
   return (
     <Container fluid className="mt-4">
       <Row>

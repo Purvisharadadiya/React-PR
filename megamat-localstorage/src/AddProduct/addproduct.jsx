@@ -1,13 +1,12 @@
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addNewproductAsync } from "../srvices/action/action";
+import { addNewProduct } from "../srvices/action/action";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-   const {isError, isCreated} = useSelector(state => state);
 
   const initialState = {
     id: "",
@@ -60,20 +59,14 @@ const AddProduct = () => {
       id: Math.floor(Math.random() * 100000),
     };
 
-    dispatch(addNewproductAsync(newProduct));
+    dispatch(addNewProduct(newProduct));
     setInputForm(initialState);
-    // navigate("/MenCard");
+    navigate("/MenCard");
   };
-   useEffect(()=> {
-        if(isCreated){
-            navigate("/MenCard");
-        }
-    }, [isCreated])
 
   return (
     <Container style={{ maxWidth: "600px", marginTop: "50px" }}>
       <h2>Add Product</h2>
-       {isError? <p>{isError}</p> : ""}
 
       <Form onSubmit={handleSubmit}>
      

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getproductAsync, updateproductAsync,  } from "../srvices/action/action";
+import { getproduct, updateproduct } from "../srvices/action/action";
 import { useNavigate, useParams } from "react-router";
 
 function Edit() {
   const { id } = useParams();
   
   const dispatch = useDispatch();
-  const {product,isUpdated} = useSelector(state => state)
+  const {product} = useSelector(state => state)
 
   const navigate = useNavigate();
    const initialState = {
@@ -34,15 +34,10 @@ function Edit() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateproductAsync(inputfrom)); 
+    dispatch(updateproduct(inputfrom)); 
     
-    // navigate("/MenCard"); 
+    navigate("/MenCard"); 
   };
-
-    useEffect(() => {
-        if(isUpdated)
-            navigate("/MenCard");
-    }, [isUpdated])
 
 
 
@@ -55,7 +50,7 @@ function Edit() {
   
   useEffect(() => {
     if(id)
-    dispatch(getproductAsync(id));
+    dispatch(getproduct(id));
   }, [id]);
 
 
