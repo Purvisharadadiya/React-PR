@@ -1,0 +1,77 @@
+{
+  "men": [
+    {
+      "id": 598,
+      "name": "svadsdvsdvdsav",
+      "desc": "vdsvdsv2344",
+      "price": "2408",
+      "categoryType": "bootcut Jean",
+      "brand": "Levis",
+      "pattern": [
+        "cotton"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/11/Pushpa_2-_The_Rule.jpg"
+    },
+    {
+      "id": 550,
+      "name": "ghj",
+      "desc": "gn",
+      "price": "20",
+      "categoryType": "oversized",
+      "brand": "Raymond",
+      "pattern": [
+        "polyester"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/11/Pushpa_2-_The_Rule.jpg"
+    },
+    {
+      "id": 535,
+      "name": "asdfgh",
+      "desc": "fdgfhghj",
+      "price": "65230",
+      "categoryType": "bootcut Jean",
+      "brand": "USPA",
+      "pattern": [
+        "linen"
+      ],
+      "image": "https://up.yimg.com/ib/th/id/OIP.U_VJuupQohwnzXcKMztqWgHaEo?pid=Api&rs=1&c=1&qlt=95&w=189&h=118"
+    },
+    {
+      "id": 950,
+      "name": "raj",
+      "desc": ",dnjnvkdh",
+      "price": "2998",
+      "categoryType": "bootcut Jean",
+      "brand": "USPA",
+      "pattern": [
+        "linen"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/11/Pushpa_2-_The_Rule.jpg"
+    },
+    {
+      "id": 973,
+      "name": "raj",
+      "desc": ",dnjnvkdh",
+      "price": "2998",
+      "categoryType": "bootcut Jean",
+      "brand": "USPA",
+      "pattern": [
+        "linen"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/11/Pushpa_2-_The_Rule.jpg"
+    },
+    {
+      "id": 742,
+      "name": "ghj",
+      "desc": "m,bsdkvhodsv",
+      "price": "20000",
+      "categoryType": "bootcut Jean",
+      "brand": "USPA",
+      "pattern": [
+        "cotton",
+        "wool"
+      ],
+      "image": "https://tse1.mm.bing.net/th/id/OIP.1TyO46AnP1VpoNZzl8pvxQHaJ4?pid=Api&P=0&h=180"
+    }
+  ]
+}
