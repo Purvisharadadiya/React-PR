@@ -1,0 +1,56 @@
+.signin-container {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+
+.signin-left {
+  background: linear-gradient(135deg, #fff8f8, #ffe8e8);
+  text-align: center;
+}
+
+.brand-title {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+}
+
+
+.signin-card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+}
+
+.signin-card h2 {
+  font-size: 1.8rem;
+}
+
+.google-btn {
+  border-radius: 25px !important;
+  padding: 10px 15px;
+}
+
+.google-btn:hover {
+  background-color: #f2f2f2;
+}
+
+button.btn-danger {
+  background-color: #d81f27;
+  border: none;
+  border-radius: 25px;
+}
+
+button.btn-danger:hover {
+  background-color: #b81b22;
+}
+
+
+@media (max-width: 767px) {
+  .signin-card {
+    margin: 30px auto;
+  }
+  .signin-left {
+    display: none !important;
+  }
+}

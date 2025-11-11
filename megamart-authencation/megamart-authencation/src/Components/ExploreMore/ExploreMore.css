@@ -1,0 +1,54 @@
+
+.explore-container {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  overflow-x: auto;
+}
+
+.explore-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.explore-list {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 0 40px;
+  width: max-content;
+  margin: 0 auto;
+  scroll-behavior: smooth;
+}
+
+
+
+.explore-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 160px;
+  transition: transform 0.3s ease;
+}
+
+
+
+.explore-img {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.explore-name {
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 400px;
+  color: #333;
+}
+
+.explore-name.megapass {
+  color: #ff3b3b;
+}
+

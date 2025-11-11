@@ -1,0 +1,153 @@
+/* === Overall Container === */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+
+/* === Each Card === */
+.card-custom {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  height: 350px; /* smaller card height */
+}
+
+.card-custom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* === Card Image === */
+.card-custom img {
+  height: 180px;       /* smaller image */
+  object-fit: cover;   /* prevents stretch */
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+
+/* === Card Body === */
+.card-body-custom {
+  padding: 12px 15px;
+  font-size: 14px;
+}
+
+.card-body-custom h5 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.card-body-custom p {
+  margin: 0;
+  color: #666;
+  font-size: 13px;
+}
+
+.card-body-custom .price {
+  font-weight: 700;
+  color: #007bff;
+  margin-top: 6px;
+  font-size: 15px;
+}
+
+.card-body-custom .pattern {
+  font-size: 12.5px;
+  color: #777;
+}
+
+/* === Button Group === */
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.btn-group button {
+  flex: 1;
+  font-size: 13px;
+  padding: 4px 0;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.btn-group button:first-child {
+  margin-right: 5px;
+}
+
+/* Hover effects for buttons */
+.btn-group .btn-primary:hover {
+  background-color: #0056b3;
+}
+.btn-group .btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* === Sort Dropdown === */
+.sort-select {
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+/* === Sidebar Styling (optional cleanup) === */
+.sidebar-filter {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  height: fit-content;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.filter-header h3 {
+  font-size: 20px;
+  color: #333;
+}
+
+.clear-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filter-box h5 {
+  font-size: 15px;
+  color: #444;
+  font-weight: 600;
+}
+
+.filter-list li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 5px 0;
+}
+
+.filter-list input {
+  margin-right: 6px;
+}
+
+.filter-list label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #333;
+  cursor: pointer;
+}
+
+.filter-list li:hover {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding-left: 4px;
+}

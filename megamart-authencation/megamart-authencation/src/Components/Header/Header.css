@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  padding: 0px;
+}
+
+/* 🔹 LOGO */
+.logo {
+  color: #d81f27;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.logo:hover {
+  text-decoration: none;
+  color: #b81b22;
+}
+
+/* 🔹 SEARCH BAR */
+.search-button {
+  position: relative;
+  width: 300px;
+}
+
+.search-input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #777777;
+  border-radius: 50px;
+  text-align: center;
+  padding-right: 40px;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #d81f27;
+  box-shadow: 0 0 5px rgba(216, 31, 39, 0.3);
+}
+
+.search-input::placeholder {
+  text-align: center;
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.search-icon:hover {
+  opacity: 1;
+}
+
+/* 🔹 MENU BAR (KEEP SAME) */
+.cart-menu {
+  background-color: #d2cdcd47;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.menu ul li {
+  list-style: none;
+  text-decoration: none !important;
+  display: inline-block;
+  padding: 0px 10px;
+  color: #777777;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.menu ul li:hover {
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transform: translateY(-1px);
+}
+
+/* 🔹 BUTTON STYLING */
+.btn {
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 20px !important;
+  transition: all 0.3s ease;
+  padding: 5px 15px;
+}
+
+/* Yellow (SignIn) */
+.btn-warning {
+  background-color: #ffc107;
+  border: none;
+  color: #222;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  color: white;
+}
+
+/* Red (Logout) */
+.btn-danger {
+  background-color: #d81f27;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #b81b22;
+}
+
+/* Blue Outline (Add Product) */
+.btn-outline-primary {
+  border: 1px solid #007bff;
+  color: #007bff;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* 🔹 HEADER ICONS */
+.cart-button img {
+  filter: grayscale(0.4);
+  transition: 0.2s;
+}
+
+.cart-button img:hover {
+  filter: grayscale(0);
+  transform: scale(1.1);
+}
+
+/* 🔹 ALIGNMENTS */
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.cart-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+button {
+  cursor: pointer;
+}
