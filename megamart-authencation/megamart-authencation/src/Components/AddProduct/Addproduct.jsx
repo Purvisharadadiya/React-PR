@@ -4,16 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { addNewProductAsync } from "../../services/action/productAction";
 import { useNavigate } from "react-router";
 import "./Addproduct.css";
+import uploadImage from "../../services/uplod";
 
 const Addproduct = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  
+
   const { products, isError, isCreated } = useSelector((state) => state.product);
   const { user } = useSelector((state) => state.auth);
 
- 
+
   const initialState = {
     id: "",
     pname: "",
@@ -30,7 +31,7 @@ const Addproduct = () => {
   const [inputForm, setInputForm] = useState(initialState);
   const [error, setError] = useState({});
 
- 
+
   const Handelchange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
@@ -48,7 +49,16 @@ const Addproduct = () => {
     }
   };
 
-  
+  const Handelimg = async (e) => {
+    // console.log(e.target.files[0]);
+    let imgUrl = await uploadImage(e.target.files[0]);
+    setInputForm({
+      ...inputForm,
+      img: `${imgUrl}`
+    });
+  }
+
+
   const validate = () => {
     let err = {};
     if (!inputForm.pname.trim()) err.pname = "Product Name is required";
@@ -61,10 +71,10 @@ const Addproduct = () => {
     if (inputForm.pattern.length === 0) err.pattern = "Select at least one pattern";
     if (inputForm.size.length === 0) err.size = "Select at least one size";
     setError(err);
-    return Object.keys(err).length === 0; 
+    return Object.keys(err).length === 0;
   };
 
- 
+
   const Handelsubmit = (e) => {
     e.preventDefault();
     if (validate()) {
@@ -76,7 +86,7 @@ const Addproduct = () => {
     }
   };
 
-  
+
   useEffect(() => {
     if (isCreated && inputForm.mainCategory) {
       navigate(`/${inputForm.mainCategory}`);
@@ -91,7 +101,7 @@ const Addproduct = () => {
 
         <Form onSubmit={Handelsubmit}>
           <Row className="gy-3">
-         
+
             <Col md={6}>
               <div className="form-floating">
                 <Form.Control
@@ -106,7 +116,7 @@ const Addproduct = () => {
               {error.pname && <small className="text-danger">{error.pname}</small>}
             </Col>
 
-           
+
             <Col md={6}>
               <div className="form-floating">
                 <Form.Control
@@ -121,23 +131,35 @@ const Addproduct = () => {
               {error.desc && <small className="text-danger">{error.desc}</small>}
             </Col>
 
-           
+
             <Col md={6}>
               <div className="form-floating">
                 <Form.Control
-                  type="text"
+                  type="file"
                   name="img"
-                  value={inputForm.img}
-                  onChange={Handelchange}
-                  placeholder="Image URL"
+                  onChange={Handelimg}
+
                 />
-                <Form.Label>Product Image URL</Form.Label>
+                <Form.Label>Product Image</Form.Label>
               </div>
-              {error.img && <small className="text-danger">{error.img}</small>}
+
+
+              {inputForm.img && (
+                <div className="mt-2 text-center">
+                  <img
+                    src={inputForm.img}
+                    alt="preview"
+                    style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                  />
+                </div>
+              )}
+
+               {error.img && <small className="text-danger">{error.img}</small>}
             </Col>
 
 
-            
+
+
             <Col md={6}>
               <div className="form-floating">
                 <Form.Control
@@ -152,7 +174,7 @@ const Addproduct = () => {
               {error.price && <small className="text-danger">{error.price}</small>}
             </Col>
 
-            
+
             <Col md={6}>
               <div className="form-floating">
                 <Form.Select name="brand" value={inputForm.brand} onChange={Handelchange}>
@@ -168,7 +190,7 @@ const Addproduct = () => {
               {error.brand && <small className="text-danger">{error.brand}</small>}
             </Col>
 
-           
+
             <Col md={6}>
               <div className="form-floating">
                 <Form.Select
@@ -190,7 +212,7 @@ const Addproduct = () => {
               )}
             </Col>
 
-           
+
             <Col md={6}>
               <div className="form-floating">
                 <Form.Select
@@ -231,7 +253,7 @@ const Addproduct = () => {
               {error.pattern && <small className="text-danger">{error.pattern}</small>}
             </Col>
 
-            
+
             <Col md={6}>
               <label className="form-label fw-semibold mb-2 text-muted">Available Sizes</label>
               <ul className="option-list">
