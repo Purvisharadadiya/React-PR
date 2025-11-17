@@ -57,7 +57,7 @@ export const resetProductState = () => ({
   type: "RESET_PRODUCT_STATE",
 });
 
-// 🟢 Get all products
+
 export const getallproductAsync = () => {
   return async (dispatch) => {
     try {
@@ -73,7 +73,7 @@ export const getallproductAsync = () => {
   };
 };
 
-// 🟢 Add new product
+
 export const addNewProductAsync = (data) => {
   return async (dispatch) => {
     try {
@@ -86,7 +86,7 @@ export const addNewProductAsync = (data) => {
   };
 };
 
-// 🟢 Delete product
+
 export const deleteProductAsync = (id) => {
   return async (dispatch) => {
     try {
@@ -98,7 +98,7 @@ export const deleteProductAsync = (id) => {
   };
 };
 
-// 🟢 Get single product
+
 export const getProductAsync = (id) => {
   return async (dispatch) => {
     try {
@@ -114,7 +114,7 @@ export const getProductAsync = (id) => {
   };
 };
 
-// 🟢 Update product
+
 export const updateProductAsync = (data) => {
   return async (dispatch) => {
     try {

@@ -11,7 +11,7 @@ const Addproduct = () => {
   const dispatch = useDispatch();
 
 
-  const { products, isError, isCreated } = useSelector((state) => state.product);
+  const { product, isError, isCreated } = useSelector((state) => state.product);
   const { user } = useSelector((state) => state.auth);
 
 
@@ -50,7 +50,6 @@ const Addproduct = () => {
   };
 
   const Handelimg = async (e) => {
-    // console.log(e.target.files[0]);
     let imgUrl = await uploadImage(e.target.files[0]);
     setInputForm({
       ...inputForm,

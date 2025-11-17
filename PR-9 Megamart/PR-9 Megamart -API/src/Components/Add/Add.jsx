@@ -1,211 +1,158 @@
-import { useState,useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { Form, Row, Col, Button, Card } from 'react-bootstrap';
-import './Add.css';
-import { AddMenDataAsync } from '../Services/Action/Action';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addPostAsync } from "../redux/actions/postActions";
+import { Form, Button, Card } from "react-bootstrap";
 
-const Add = () => {
+const PostForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { isCreated, isError } = useSelector((state) => state.posts);
+
   const initialState = {
-    id: '',
-    name: '',
-    desc: '',
-    price: '',
-    categoryType: '',
-    brand: '',
-    pattern: [],
-    image: ''
+    title: "",
+    description: "",
+    date: "",
+    image: "",
+    category: "",
   };
 
-  const [formData, setFormData,isCreated] = useState(initialState);
-  const [errors, setErrors,isError] = useState({});
+  const [formData, setFormData] = useState(initialState);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-
-    if (type === 'checkbox') {
-      setFormData((prev) => ({
-        ...prev,
-        pattern: checked
-          ? [...prev.pattern, value]
-          : prev.pattern.filter((p) => p !== value)
-      }));
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value
-      });
-    }
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
+  
   const validateForm = () => {
-    const newErrors = {};
+    let newErrors = {};
 
-    if (!formData.name.trim()) newErrors.name = 'Product name is required.';
-    if (!formData.desc.trim()) newErrors.desc = 'Description is required.';
-    if (!formData.price) newErrors.price = 'Price is required.';
-    if (!formData.categoryType) newErrors.categoryType = 'Select a category.';
-    if (!formData.brand) newErrors.brand = 'Select a brand.';
-    if (formData.pattern.length === 0)
-      newErrors.pattern = 'Select at least one pattern.';
-    if (!formData.image.trim()) newErrors.image = 'Image URL is required.';
+    if (!formData.title.trim()) newErrors.title = "Title is required";
+    if (!formData.description.trim())
+      newErrors.description = "Description is required";
+    if (!formData.date) newErrors.date = "Select a date";
+    if (!formData.image.trim()) newErrors.image = "Image URL is required";
+    if (!formData.category) newErrors.category = "Select a category";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      const newData = { ...formData, id: Math.floor(Math.random() * 1000) };
-      dispatch(AddMenDataAsync(newData));
-      // navigate('/men');
+      const newBlog = {
+        ...formData,
+        id: Math.floor(Math.random() * 10000),
+      };
+
+      dispatch(addPostAsync(newBlog));
     }
   };
-   useEffect(()=> {
-        if(isCreated){
-            navigate('/men');
-        }
-    }, [isCreated])
+
+  
+  useEffect(() => {
+    if (isCreated) {
+      navigate("/posts");
+    }
+  }, [isCreated]);
 
   return (
-    <div className="add-container">
-      <Card className="shadow-lg p-4 rounded-4">
-        <h2 className="text-center mb-4 title">Add Product</h2>
-          {isError? <p>{isError}</p> : ""}
+    <div className="container mt-3">
+      <Card className="p-4">
+        <h3 className="text-center">Add New Blog</h3>
+
+        {isError && <p className="text-danger">{isError}</p>}
 
         <Form onSubmit={handleSubmit}>
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="3">Product Name</Form.Label>
-            <Col sm="9">
-              <Form.Control
-                type="text"
-                name="name"
-                placeholder="Enter product name"
-                value={formData.name}
-                onChange={handleChange}
-                className={errors.name ? 'is-invalid' : ''}
-              />
-              {errors.name && <span className="error">{errors.name}</span>}
-            </Col>
+        
+          <Form.Group className="mb-3">
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              type="text"
+              name="title"
+              placeholder="Enter title"
+              value={formData.title}
+              onChange={handleChange}
+              className={errors.title ? "is-invalid" : ""}
+            />
+            <small className="text-danger">{errors.title}</small>
           </Form.Group>
 
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="3">Description</Form.Label>
-            <Col sm="9">
-              <Form.Control
-                as="textarea"
-                rows={2}
-                name="desc"
-                placeholder="Enter product description"
-                value={formData.desc}
-                onChange={handleChange}
-                className={errors.desc ? 'is-invalid' : ''}
-              />
-              {errors.desc && <span className="error">{errors.desc}</span>}
-            </Col>
+          {/* Description */}
+          <Form.Group className="mb-3">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              as="textarea"
+              name="description"
+              rows={3}
+              placeholder="Enter blog description"
+              value={formData.description}
+              onChange={handleChange}
+              className={errors.description ? "is-invalid" : ""}
+            />
+            <small className="text-danger">{errors.description}</small>
           </Form.Group>
 
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="3">Price (₹)</Form.Label>
-            <Col sm="9">
-              <Form.Control
-                type="number"
-                name="price"
-                placeholder="Enter price"
-                value={formData.price}
-                onChange={handleChange}
-                className={errors.price ? 'is-invalid' : ''}
-              />
-              {errors.price && <span className="error">{errors.price}</span>}
-            </Col>
+          {/* Date */}
+          <Form.Group className="mb-3">
+            <Form.Label>Date</Form.Label>
+            <Form.Control
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              className={errors.date ? "is-invalid" : ""}
+            />
+            <small className="text-danger">{errors.date}</small>
           </Form.Group>
 
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="3">Category</Form.Label>
-            <Col sm="9">
-              <Form.Select
-                name="categoryType"
-                value={formData.categoryType}
-                onChange={handleChange}
-                className={errors.categoryType ? 'is-invalid' : ''}
-              >
-                <option value="">Select category</option>
-                {['bootcut Jean', 'straightfit', 'oversized', 'denim'].map((v) => (
-                  <option key={v} value={v}>{v}</option>
-                ))}
-              </Form.Select>
-              {errors.categoryType && (
-                <span className="error">{errors.categoryType}</span>
-              )}
-            </Col>
+          {/* Image */}
+          <Form.Group className="mb-3">
+            <Form.Label>Image URL</Form.Label>
+            <Form.Control
+              type="text"
+              name="image"
+              placeholder="Paste image link"
+              value={formData.image}
+              onChange={handleChange}
+              className={errors.image ? "is-invalid" : ""}
+            />
+            <small className="text-danger">{errors.image}</small>
           </Form.Group>
 
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="3">Brand</Form.Label>
-            <Col sm="9">
-              <Form.Select
-                name="brand"
-                value={formData.brand}
-                onChange={handleChange}
-                className={errors.brand ? 'is-invalid' : ''}
-              >
-                <option value="">Select brand</option>
-                {['Raymond', 'USPA', 'Levis', 'Mufti'].map((v) => (
-                  <option key={v} value={v}>{v}</option>
-                ))}
-              </Form.Select>
-              {errors.brand && <span className="error">{errors.brand}</span>}
-            </Col>
+          {/* Category */}
+          <Form.Group className="mb-3">
+            <Form.Label>Category</Form.Label>
+            <Form.Select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              className={errors.category ? "is-invalid" : ""}
+            >
+              <option value="">Select category</option>
+              <option value="Technology">Technology</option>
+              <option value="Travel">Travel</option>
+              <option value="Lifestyle">Lifestyle</option>
+              <option value="Business">Business</option>
+            </Form.Select>
+            <small className="text-danger">{errors.category}</small>
           </Form.Group>
 
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="3">Pattern</Form.Label>
-            <Col sm="9">
-              <div className="d-flex flex-wrap gap-3">
-                {['Cotton', 'Linen', 'Polyester', 'Wool'].map((v) => (
-                  <Form.Check
-                    key={v}
-                    type="checkbox"
-                    label={v}
-                    value={v.toLowerCase()}
-                    checked={formData.pattern.includes(v.toLowerCase())}
-                    onChange={handleChange}
-                  />
-                ))}
-              </div>
-              {errors.pattern && <span className="error">{errors.pattern}</span>}
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row} className="mb-4">
-            <Form.Label column sm="3">Image URL</Form.Label>
-            <Col sm="9">
-              <Form.Control
-                type="text"
-                name="image"
-                placeholder="Paste image link"
-                value={formData.image}
-                onChange={handleChange}
-                className={errors.image ? 'is-invalid' : ''}
-              />
-              {errors.image && <span className="error">{errors.image}</span>}
-            </Col>
-          </Form.Group>
-
-          <div className="text-center">
-            <Button variant="primary" type="submit" className="px-5 py-2 rounded-pill">
-              Submit
-            </Button>
-          </div>
+          <Button variant="primary" type="submit" className="w-100">
+            Add Blog
+          </Button>
         </Form>
       </Card>
     </div>
   );
 };
 
-export default Add;
+export default PostForm;
