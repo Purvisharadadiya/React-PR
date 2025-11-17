@@ -15,6 +15,12 @@ export const blogReducer = (state = initialState, action) => {
         isCreated: true,
         isError: null,
       };
+      case "GET_SINGLE_BLOG_SUCCESS":
+  return {
+    ...state,
+    blog: action.payload,
+  };
+
 
     case "ADD_BLOG_REJ":
       return {
@@ -53,4 +59,5 @@ export const blogReducer = (state = initialState, action) => {
     default:
       return state;
   }
+  
 };

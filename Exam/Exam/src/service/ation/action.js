@@ -9,6 +9,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../config/firebase.config";
 
+
 export const addNewBlog = (data) => ({
   type: "ADD_BLOG_SUC",
   payload: data,
@@ -44,17 +45,22 @@ export const deleteBlogRej = (msg) => ({
 });
 
 
+
 export const addNewBlogAsync = (data) => {
   return async (dispatch) => {
     try {
       if (!data.id) throw new Error("Blog ID missing");
+
       await setDoc(doc(db, "blogs", data.id), data);
+
       dispatch(addNewBlog(data));
     } catch (error) {
       dispatch(addNewBlogRej(error.message));
     }
   };
 };
+
+
 
 export const getAllBlogsAsync = () => {
   return async (dispatch) => {
@@ -72,6 +78,8 @@ export const getAllBlogsAsync = () => {
   };
 };
 
+
+
 export const deleteBlogAsync = (id) => {
   return async (dispatch) => {
     try {
@@ -83,10 +91,43 @@ export const deleteBlogAsync = (id) => {
   };
 };
 
+
+
+export const getSingleBlogAsync = (id) => {
+  return async (dispatch) => {
+    try {
+      const docRef = doc(db, "blogs", id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        dispatch({
+          type: "GET_SINGLE_BLOG_SUCCESS",
+          payload: { id: docSnap.id, ...docSnap.data() },
+        });
+      } else {
+        dispatch({ type: "GET_SINGLE_BLOG_FAIL" });
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+
+
 export const updateBlogAsync = (data) => {
   return async (dispatch) => {
     try {
-      await updateDoc(doc(db, "blogs", data.id), data);
+      const docRef = doc(db, "blogs", data.id);
+
+      await updateDoc(docRef, {
+        title: data.title,
+        desc: data.desc,
+        img: data.img,
+        category: data.category,
+      });
+
       dispatch(updateBlog());
     } catch (error) {
       dispatch(updateBlogRej(error.message));

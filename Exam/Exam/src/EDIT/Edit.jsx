@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Row, Col, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-// import { getBlogAsync, updateBlogAsync } from "../service/ation/action";
 import { useNavigate, useParams } from "react-router";
-import { getAllBlogsAsync, updateBlogAsync } from "../service/ation/action";
+import {  getSingleBlogAsync, updateBlogAsync } from "../service/ation/action";
 
 const EditBlog = () => {
   const { id } = useParams();
@@ -57,7 +56,7 @@ const EditBlog = () => {
 
   
   useEffect(() => {
-    dispatch(getAllBlogsAsync(id));
+    dispatch(getSingleBlogAsync(id));
   }, [id]);
 
   useEffect(() => {
