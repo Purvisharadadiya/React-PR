@@ -47,7 +47,7 @@ const HOME = () => {
                     {v.desc.length > 100 ? v.desc.slice(0, 100) + "..." : v.desc}
                   </p>
 
-                  {/* 👉 NOW ALWAYS SHOW BUTTONS */}
+                 
                   <div className="d-flex gap-2">
                     <Button size="sm" variant="primary" onClick={() => handleEdit(v.id)}>
                       Edit

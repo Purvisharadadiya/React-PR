@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
-import {
-  googleSignInAsync,
-  signInAsync,
-} from "../service/reduser/authencatioReduser";
-import "./Signin.css";
+import { signInAsync } from "../service/ation/athencation";
+
+
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -31,9 +29,7 @@ const SignIn = () => {
     dispatch(signInAsync(inputForm));
   };
 
-  const handleGoogleSignIn = () => {
-    dispatch(googleSignInAsync());
-  };
+  
 
   useEffect(() => {
     if (user) {
@@ -50,10 +46,8 @@ const SignIn = () => {
           className="d-none d-md-flex justify-content-center align-items-center bg-light flex-column signin-left"
         >
          
-          <h1 className="brand-title text-danger fw-bold">MegaMart</h1>
-          <p className="text-muted text-center px-4">
-            Discover top brands and exclusive deals — login to start shopping!
-          </p>
+          <h1 className="brand-title text-danger fw-bold">BLOG</h1>
+          
         </Col>
 
        
@@ -63,7 +57,7 @@ const SignIn = () => {
         >
           <Card className="p-5 shadow-lg border-0 signin-card">
             <h2 className="fw-bold text-center mb-4 text-primary">
-              Welcome Back 👋
+              Welcome Back 
             </h2>
             <p className="text-center text-muted mb-4">
               Sign in to continue shopping
@@ -104,20 +98,8 @@ const SignIn = () => {
 
             <div className="text-center mb-3 text-muted">or</div>
 
-            <div className="d-grid mb-3">
-              <Button
-                variant="outline-dark"
-                className="google-btn d-flex align-items-center justify-content-center gap-2"
-                onClick={handleGoogleSignIn}
-              >
-                <img
-                  src="./src/img/img66.webp"
-                  alt="Google"
-                  width="20"
-                />
-                Sign in with Google
-              </Button>
-            </div>
+            
+          
 
             <p className="text-center mt-3 text-muted">
               Don't have an account?{" "}

@@ -98,7 +98,7 @@ const AddBlog = () => {
             {error.desc && <small className="text-danger">{error.desc}</small>}
           </Col>
 
-          {/* ⭐ ONLY IMAGE URL */}
+          
           <Col md={6}>
             <Form.Control
               type="text"

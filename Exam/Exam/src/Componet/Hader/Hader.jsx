@@ -26,26 +26,12 @@ const Header = () => {
           </div>
 
           
-          <div className="col-4 d-flex justify-content-center">
-            <div className="search-button position-relative">
-              <input
-                type="text"
-                className="search-input"
-                placeholder="Search blogs..."
-              />
-              <img
-                src="./src/img/search-interface-symbol.png"
-                alt="search"
-                className="search-icon"
-              />
-            </div>
-          </div>
+         
 
           
           <div className="col-4 d-flex justify-content-end align-items-center gap-3">
 
-            <img src="./src/img/location.png" alt="location" height={20} />
-            <img src="./src/img/heart.png" alt="heart" height={20} />
+           
 
            
             {user ? (

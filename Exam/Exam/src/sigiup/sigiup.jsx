@@ -47,10 +47,8 @@ const SignUp = () => {
           className="d-none d-md-flex justify-content-center align-items-center bg-light flex-column signup-left"
         >
          
-          <h1 className="brand-title text-danger fw-bold">MegaMart</h1>
-          <p className="text-muted text-center px-4">
-            Create your account and start shopping for the latest trends!
-          </p>
+          <h1 className="brand-title text-danger fw-bold">Blog</h1>
+         
         </Col>
 
        

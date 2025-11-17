@@ -7,6 +7,7 @@ import AddBLOG from './Componet/ADD/addblog.JSX'
 import SignIn from './sigin/sigin'
 import { signOutAsync } from './service/ation/athencation'
 import SignUp from './sigiup/sigiup'
+import EditBlog from './EDIT/Edit'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/AddBLOG' element={<AddBLOG></AddBLOG>} />
         <Route path="/signIn" element={<SignIn></SignIn>} />
         <Route path="/signUp" element={<SignUp></SignUp>} />
+         <Route path="//editblog/:id" element={<EditBlog></EditBlog>} />
         </Routes>
     </>
   )
